@@ -6,9 +6,6 @@ class FormValidator {
     this._inputErrorClass = settings.inputErrorClass;
     this._inactiveButtonClass = settings.inactiveButtonClass;
     this._formEl = formEl;
-    this._inputList = Array.from(
-      this._formEl.querySelectorAll(settings.inputSelector)
-    );
   }
 
   _checkInputValidity(inputElement) {
@@ -86,7 +83,7 @@ class FormValidator {
   enableValidation() {
     this._formEl.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      // this._resetValidation();
+      this._resetValidation();
     });
     this._setEventListeners();
   }
