@@ -12,12 +12,10 @@ class FormValidator {
   }
 
   _checkInputValidity(inputElement) {
+    // console.log(inputElement);
     if (!inputElement.validity.valid) {
-      this._showInputError(
-        this._formEl,
-        inputElement,
-        inputElement.validationMessage
-      );
+      this._showInputError(inputElement, inputElement.validationMessage);
+      // console.log(inputElement);
     } else {
       this._hideInputError(inputElement);
     }
@@ -30,8 +28,12 @@ class FormValidator {
   }
 
   _showInputError(inputElement, errorMessage) {
+    console.log(inputElement.id); // Check the ID of the input element
+
     this._errorElementId = `#${inputElement.id}-error`;
+    console.log(this._errorElementId);
     this._errorElement = this._formEl.querySelector(this._errorElementId);
+
     inputElement.classList.add(this._inputErrorClass);
     this._errorElement.textContent = errorMessage;
     this._errorElement.classList.add(this._errorClass);
