@@ -1,29 +1,32 @@
+import Popup from "./Popup.js";
+
 class PopupWithForm extends Popup {
   constructor({ popupSelector, handleFormSubmit }) {
-    super({ popupSelector });
+    super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
-    this._popupForm = this._popupElement.document.querySelector(".popup__form");
+    this._popupForm = this._popup.querySelector(".popup__form");
   }
 
   _getInputValues() {
-    this._inputList = this.popupForm.querySelectorAll(".popup__input");
+    this._inputList = this._popupForm.querySelectorAll(".popup__input");
     const values = {};
     this._inputList.forEach((input) => {
-      //add key/value pair
-      //key is input.name
-      //value is input.value
-      //bracket notation
+      values[input.name] = input.value;
     });
+    return values;
   }
 
-  _setEventListeners() {
-    super._setEventListeners();
+  setEventListeners() {
+    super.setEventListeners();
     this._popupForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
       const inputValues = this._getInputValues();
-      this._handleFormSubmit(evt);
+      this._handleFormSubmit(inputValues);
     });
   }
 }
 
 export default PopupWithForm;
+
+// addTodoForm.addEventListener("submit", (evt) => {
+//   evt.preventDefault();
