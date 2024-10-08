@@ -25,21 +25,6 @@ const todoCounter = new TodoCounter({
   selector: ".counter__text",
 });
 
-const openModal = (modal) => {
-  modal.classList.add("popup_visible");
-};
-
-const closeModal = (modal) => {
-  modal.classList.remove("popup_visible");
-};
-addTodoButton.addEventListener("click", () => {
-  openModal(addTodoPopup);
-});
-
-addTodoCloseBtn.addEventListener("click", () => {
-  closeModal(addTodoPopup);
-});
-
 const section = new Section({
   items: initialTodos,
   renderer: (item) => {
@@ -64,22 +49,30 @@ const addTodoPopupModal = new PopupWithForm({
     const values = { name, date, id, completed: false };
     const todo = generateTodo(values);
     todosList.append(todo);
-    closeModal(addTodoPopup);
+    addTodoPopupModal.close();
     // validator.resetValidation();
+    todoCounter.updateTotal(true);
   },
 });
 addTodoPopupModal.setEventListeners();
+
+addTodoButton.addEventListener("click", () => {
+  addTodoPopupModal.open();
+});
+
+addTodoCloseBtn.addEventListener("click", () => {
+  addTodoPopupModal.close();
+});
 
 function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
 }
 
 function handleDelete(completed) {
+  todoCounter.updateTotal(false);
+
   if (completed) {
     todoCounter.updateCompleted(false);
-    todoCounter.updateTotal(false);
-  } else {
-    todoCounter.updateTotal(false);
   }
 }
 

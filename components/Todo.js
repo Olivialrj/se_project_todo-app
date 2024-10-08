@@ -56,6 +56,7 @@ class Todo {
   }
   _toggleCompletion = () => {
     this._completed = !this._completed;
+    this._handleCheck(this._completed);
   };
 
   _remove = () => {
