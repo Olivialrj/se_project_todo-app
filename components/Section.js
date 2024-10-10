@@ -1,9 +1,10 @@
 class Section {
-  constructor({ items, renderer, containerSelector }) {
+  constructor({ items, renderer }, containerSelector) {
     this._items = items;
     this._renderer = renderer;
     // add-todo-popup
     this._container = document.querySelector(containerSelector);
+    console.log("Container:", this._container);
   }
 
   renderItems() {

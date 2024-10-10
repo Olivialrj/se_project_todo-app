@@ -19,7 +19,6 @@ class Todo {
     this._todoCheckBoxEl = this._todoElement.querySelector(".todo__completed");
     this._todoCheckBoxEl.addEventListener("change", () => {
       this._toggleCompletion();
-      this._handleCheck(this._completed);
     });
   }
 
