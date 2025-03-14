@@ -27,12 +27,6 @@ This project is built using:
 ![image.png](image.png)
 ![image-1.png](image-1.png)
 
-## Deployment
-
-This project is deployed on GitHub Pages:
-
-[Your GitHub Pages URL here]
-
 ## Getting Started
 
 1. Clone the repository
